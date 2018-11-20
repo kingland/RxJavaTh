@@ -27,7 +27,7 @@ public interface Observer<T> {
 ### Observable
 Observable คือสิ่งที่เราจะเจอบ่อยที่สุดเมื่อเราใช้ ReactiveX ซึ่ง Observable เป็นตัวที่สามารถส่งข้อมูลออกมาได้ตั้งแต่ 0 item จนถึง N items โดยจะปล่อยข้อมูลให้กับผู้รับผ่านทาง `onNext()`, แจ้ง error ที่เกิดขึ้นผ่านทาง `onError()` และจบการทำงานด้วยการเรียก `onComplete()` โดยหลังจากที่เรียก `onError()` หรือ `onComplete()` แล้วนั้น Observable ก็จะหยุดการทำงานลงทันที ซึ่ง function ทั้งหมดที่นี้ถูกอธิบายไว้แล้วในตอนต้นของบนความนั้นเองครับ
 ### Single
-Single คือ Observable ที่สามารถปล่อยเหตุการณ์หรือข้อมูลออกมาได้เพียงครั้งเดียว ซึ่งเหตุการณ์นั้นจะเป็นได้แค่ `onSuccess()` หรือ `onError()` เท่านั้น (ไม่มี onComplete()) ซึ่งเมื่อเหตุการณ์ใดเหตุการณ์หนึ่งถูกเรียกแล้ว Single ก็จะหยุดการทำงานทันที ลองดู interface ของฝั่งรับ (observer) ประกอบเพื่อความเข้าใจที่มากขึ้นครับ
+Single คือ Observable ที่สามารถปล่อยเหตุการณ์หรือข้อมูลออกมาได้เพียงครั้งเดียว ซึ่งเหตุการณ์นั้นจะเป็นได้แค่ `onSuccess()` หรือ `onError()` เท่านั้น (ไม่มี `onComplete()`) ซึ่งเมื่อเหตุการณ์ใดเหตุการณ์หนึ่งถูกเรียกแล้ว Single ก็จะหยุดการทำงานทันที ลองดู interface ของฝั่งรับ (observer) ประกอบเพื่อความเข้าใจที่มากขึ้นครับ
 ```java
 interface SingleObserver<T> {
     void onSubscribe(Disposable d);
@@ -60,7 +60,7 @@ singleObservable.subscribe({configs ->
 })
 ```
 ### Completable
-Completable คือ observable ที่คล้ายกับ Single เพียงแต่เหตุการณ์ที่ Completable สามารถปล่อยออกมาได้นั้น จะมีแค่ `onComplete()` และ `onError()` เท่านั้น (ไม่มี onNext()) ลองดู interface ของฝั่งรับ (observer) ประกอบครับ
+Completable คือ observable ที่คล้ายกับ Single เพียงแต่เหตุการณ์ที่ Completable สามารถปล่อยออกมาได้นั้น จะมีแค่ `onComplete()` และ `onError()` เท่านั้น (ไม่มี `onNext()`) ลองดู interface ของฝั่งรับ (observer) ประกอบครับ
 ```java
 interface CompletableObserver<T> {
     void onSubscribe(Disposable d);
@@ -93,7 +93,7 @@ completable.subscribe({
 })
 ```
 ### Maybe
-Maybe คือ Observable ที่รวมความสามารถของ Single และ Completable เข้าไว้ด้วยกัน นั้นคือ Maybe สามารถส่งข้อมูลออกมาผ่านทาง `onSuccess()` ได้ 1 ข้อมูลเหมือน Single (ซึ่งจะไม่เรียก onComplete()) หรือไม่ส่งข้อมูลออกมาเลย แล้วจบการทำงานด้วยการเรียก `onComplete()` เหมือน Completable ลองดู interface ของฝั่งรับ (observer) ประกอบเพื่อความเข้าใจมากยิ่งขึ้นครับ
+Maybe คือ Observable ที่รวมความสามารถของ Single และ Completable เข้าไว้ด้วยกัน นั้นคือ Maybe สามารถส่งข้อมูลออกมาผ่านทาง `onSuccess()` ได้ 1 ข้อมูลเหมือน Single (ซึ่งจะไม่เรียก `onComplete()`) หรือไม่ส่งข้อมูลออกมาเลย แล้วจบการทำงานด้วยการเรียก `onComplete()` เหมือน Completable ลองดู interface ของฝั่งรับ (observer) ประกอบเพื่อความเข้าใจมากยิ่งขึ้นครับ
 ```java
 interface MaybeObserver<T> {
     void onSubscribe(Disposable d);
@@ -190,7 +190,7 @@ flowable.subscribe({ event: MotionEvent ->
 })
 ```
 ### Update
-ใน RxJava 2.x ได้มีการเพิ่มความสามารถให้กับ Operator Observable.observeOn() ทำให้ไม่มีปัญหาเรื่อง MissingBackpressureException เกิดขึ้นเมื่อใช้ Observable ลองดู link ด้านล่างประกอบครับ
+ใน RxJava 2.x ได้มีการเพิ่มความสามารถให้กับ Operator `Observable.observeOn()` ทำให้ไม่มีปัญหาเรื่อง MissingBackpressureException เกิดขึ้นเมื่อใช้ Observable ลองดู link ด้านล่างประกอบครับ
 <br/>
 [Observable.observeOn](https://github.com/ReactiveX/RxJava/issues/4726)
 <br/>
@@ -199,9 +199,11 @@ flowable.subscribe({ event: MotionEvent ->
 [Observable backpressure](https://github.com/ReactiveX/RxJava/wiki/Backpressure-%282.0%29)
 ## Conclusion
 จากบนความข้างต้น เราได้เรียนรู้ว่า Observable และ Observer คืออะไร และมี Obsevable ประเภทไหนบางให้เราเรียกใช้งานและแต่ละประเภทแตกต่างกันอย่างไร โดยจะขอสรุปเป็นข้อๆ ได้ดังนี้
-* **`Observable`** สามารถส่งข้อมูลออกมาได้ตั้งแต่ 0 item จนถึง N items โดยส่งข้อมูลผ่านทาง onNext() และจบการทำงานทันที เมื่อเรียก onError() หรือ onComplete()
-* **`Single`** ปล่อยเหตุการณ์หรือข้อมูลออกมาได้เพียงครั้งเดียว ซึ่งเป็นได้แค่ onSuccess() หรือ onError() เท่านั้น
-* **`Completable`** สามารถส่ง event ออกมาได้เพียง onComplete() และ onError() เท่านั้น
+* **`Observable`** สามารถส่งข้อมูลออกมาได้ตั้งแต่ 0 item จนถึง N items โดยส่งข้อมูลผ่านทาง onNext() และจบการทำงานทันที เมื่อเรียก `onError()` หรือ `onComplete()`
+* **`Single`** ปล่อยเหตุการณ์หรือข้อมูลออกมาได้เพียงครั้งเดียว ซึ่งเป็นได้แค่ `onSuccess()` หรือ`onError()` เท่านั้น
+* **`Completable`** สามารถส่ง event ออกมาได้เพียง `onComplete()` และ `onError()` เท่านั้น
 * **`Maybe`**: คือ Observable ที่รวมความสามารถของ Single และ Completable เข้าไว้ด้วยกัน
 * **`Flowable`** ทำงานเหมือน Observable ทุกอย่าง เพียงแต่มีเรื่อง backpressure เข้ามาเกี่ยวข้อง
 * **`backpressure`** คือกระบวนการที่ไว้ชะลอการปล่อยข้อมูลออกมาจากฝั่งส่ง
+## Credit
+โดยคุณ [nutron](https://medium.com/@nutron) 
