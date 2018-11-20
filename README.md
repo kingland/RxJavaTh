@@ -1,6 +1,14 @@
 # RxJava
 บทความนี้ เป็นส่วนหนึ่งของชุดบทความที่พูดถึง RxJava โดยคุณ [nutron](https://medium.com/@nutron) ต้องขอขอบคุณมา ณ.ที่นี่ด้วย ใครอยากอยากบทความอื่นของพี่เค้าไปติดตามได้
 ก่อนที่เราจะไปรู้จักกับ RxJava กันในบทความชุดนี้ บทความนี้จึงอยากจะปูพื้นฐานเบื้องต้นเกี่ยวกับคำศัพท์และเทคโนยีที่ใช้ใน RxJava กันก่อน โดยพื้นฐานเหล่านี้จะเกี่ยวข้องกับตระกูล ReactiveX ทั้งหมด ทั้ง RxJava RxJs หรือ RxSwift เป็นต้น ซึ่งจะช่วยให้เราเข้าใจหลักการและความเป็นมา รวมถึงยังเป็นพื้นฐานให้กับเนื้อหาในบทความหน้าที่เราจะพูดถึงอีกด้วย แต่เนื่องจากบทความนี้จะไม่ลงลึกถึงรายละเอียดมากนัก ซึ่งหากใครที่ต้องการรู้รายละเอียดมากขึ้น ก็สามารถตามไปอ่านต่อได้ตามลิ้งค์ที่แนบไว้ให้ครับ
+- [ReactiveX คือ](https://github.com/kingland/RxJavaThai/blob/master/README.md)
+- [Observer & Observable](https://github.com/kingland/RxJavaThai/blob/master/Observer%26Observable.md)
+- [สร้าง Observable](https://github.com/kingland/RxJavaThai/blob/master/Observable.md)
+- [Hot Observable Vs Cold Observable](https://github.com/kingland/RxJavaThai/blob/master/Hot%26ColdObservable.md)
+- [Observer Vs Subscriber Vs Consumer](https://github.com/kingland/RxJavaThai/blob/master/ObserverSubscriberConsumer.md)
+- [observeOn Vs subscribeOn](https://github.com/kingland/RxJavaThai/blob/master/SubscribeOn%26ObserveOn.md)
+- [Operator ใน ReactiveX](https://github.com/kingland/RxJavaThai/blob/master/Operators.md)
+- [Subject คือ](https://github.com/kingland/RxJavaThai/blob/master/Subject.md)
 ## TL;DR
 เนื่องจากบทความนี้ค่อนข้างจะยาวหน่อยเลยอยากเอาส่วนสรุปมาไว้ตอนต้นซะเลย จะได้ประหยัดเวลาสำหรับผู้อ่านที่มีพื้นอยู่บ้างแล้ว ส่วนใครที่ยังเพิ่งเริ่มต้นก็ scroll กันยาวๆไปครับ ซึ่งจากบทความสามารถสรุปประเด็นที่สำคัญเป็นข้อๆได้ดังนี้
 * **`Imperative programming`**  คือลักษณะการเขียนโปรแกรมแบบบอกรายละเอียดทุกขั้นตอน เน้นอธิบายการทำเพื่อให้ได้มาซึ่งผลลัพธ์
