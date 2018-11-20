@@ -18,7 +18,6 @@ public interface Observer<T> {
 * **`onError(Throwable e)`**: จะถูกเรียกโดย Observable เมื่อมีข้อผิดพลาดใดๆเกิดขึ้นระหว่างการทำงาน โดยจะส่ง Throwable เข้ามาผ่านทาง Parameter ของ onError() ซึ่งเมื่อเรียก onError() แล้ว Observable จะหยุดการทำงานทันที โดยจะไม่มีการเรียก onNext() หรือ onComplete() ต่ออีก
 * **`onComplete()`**: จะถูกเรียกโดย Observable เป็นลำดับสุดท้ายหลังจากที่ไม่มี item ใดๆที่ต้องการปล่อยออกมาผ่านทาง onNext() อีกแล้ว โดยที่ Observable จะหยุดการทำงานทันทีเมื่อ onComplete() ถูกเรียก
 และเพื่อให้เข้าใจและเห็นภาพได้ชัดเจนมากยิ่งขึ้นเราลองมาดูภาพอธิบายการทำงานของ Observable จากเว็บ ReactiveX ประกอบครับ
-<br/>
 ![ReactiveX image](https://cdn-images-1.medium.com/max/800/0*EVHjFNGDhPjT6TbU.)
 <br/>
 จากภาพคือแผนภาพ Mable (marble diagram) ที่อธิบายการทำงานของ Observable ที่มี Operator ขั้นตรงกลาง โดย Operator ทำหน้าที่ปรับเสริมเติมแต่งข้อมูลก่อนที่ข้อมูลนั้นจะถูกส่งต่อไปยัง Observer ซึ่งเราจะพูดถึง Operator ในบทความต่อไป ทั้งนี้แผนภาพ Marble นี้จะถูกใช้ในการอธิบายการทำงานของ Observable และ function ต่างๆที่มีให้ใช้ใน ReactiveX เยอะมาก ดังนั้นจึงอยากให้ทำความคุ้นเคยกับมันไว้ครับ
