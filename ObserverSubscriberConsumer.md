@@ -1,7 +1,7 @@
 ## What are they look like?
 ก่อนที่จะไปดูความแตกต่างและหลักการทำงานของทั้งสามตัวนี้ ก็อยากจะพูดถึง method ที่สำคัญที่เราต้องรู้จักเมื่อใช้งาน Rxjava กันก่อน โดยจะขอยกส่วนหนึ่งจากบทความที่สอง ที่พูดถึงหลักการทำงานของ method ที่อยู่ภายใน Observer มาเพื่อเป็นการทบทวนดังนี้
 <br/>
-*Observer* คือ interface ที่ประกอบไปด้วย 4 functions หลักที่สำคัญคือ
+**Observer** คือ interface ที่ประกอบไปด้วย 4 functions หลักที่สำคัญคือ
 * onSubscribe(Disposable d): จะถูกเรียกเมื่อมีเหตุการณ์ subcribe เกิดขึ้น และจะส่ง Disposable object เข้ามาทาง parameter ของ function โดยเราสามารถใช้ object นี้เพื่อหยุดการทำงานของการ subscribe ครั้งนั้นๆได้ (ซึ่งจะพูดถึงในตอนท้ายของบนความ)
 * onNext(T item): คือช่องทางที่ Observer ไว้ใช้รับข้อมูลจาก Observable โดย Observable จะส่งข้อมูลเข้ามาผ่านทาง parameter ของ onNext()
 * onError(Throwable e): จะถูกเรียกโดย Observable เมื่อมีข้อผิดพลาดใดๆเกิดขึ้นระหว่างการทำงาน โดยจะส่ง Throwable เข้ามาผ่านทาง Parameter ของ onError() ซึ่งเมื่อเรียก onError() แล้ว Observable จะหยุดการทำงานทันที โดยจะไม่มีการเรียก onNext() หรือ onComplete() ต่ออีก
