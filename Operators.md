@@ -22,7 +22,8 @@ val obs = Observable.just(1, 2, 3, 4, 5).filter { n -> n%2 == 0 }
 map() คือการ Operator ที่เอาไว้ใช้เปลี่ยนข้อมูลหรือชนิดของข้อมูลให้เป็นข้อมูลใหม่ที่เราต้องการ (map Data) โดย map() จะรับ parameter เป็น Function ที่เรากำหนดให้ ซึ่ง Function นี้จะถูกนำไป apply กับทุกๆ Item ที่ถูกปล่อยออกมา ลองดูตัวอย่างการใช้ map() ด้านล่างเพื่อเปลี่ยนตัวเลขให้กลายเป็นข้อความว่า “emit number X” กันดูครับ
 ```kotlin
 val obs = Observable.just(1, 2, 3).map { number -> “emit number: $number” }
-
+```
+```text
 //outputs:
 emit number: 1
 emit number: 2
