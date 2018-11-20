@@ -1,6 +1,8 @@
 ## Observable
 Observable คือ ตัวที่เชื่อมระหว่างผู้ผลิตข้อมูล (Producer) และผู้รับข้อมูล (Consumer) เพื่อทำหน้าที่จัดการกระบวนการปล่อยข้อมูลหรือชุดของข้อมูลออกมา (emit item or sequence of items) โดยมี Observer ที่เป็นเหมือน Consumer ทำหน้าที่รับข้อมูลและตอบสนองต่อข้อมูลที่ถูกส่งออกมาเหล่านั้น Observable ยังอนุญาตให้เราสามารถที่จะทำการเสริมเติมแต่งในสายข้อมูล (allow to compose stream) ก่อนที่ข้อมูลเหล่านั้นจะถูกปล่อยออกมาให้กับ Observer เพื่อที่จะให้ Observer สามารถนำไปข้อมูลที่ได้นั้นไปใช้งานได้ทันที นอกจากนี้ Observable ยังช่วยให้การทำงานแบบ asynchronous เป็นเรื่องที่ง่ายขึ้น โดยเราสามารถสลับ thread การทำงานไปมาได้อย่างง่ายดาย และยังช่วยลดปัญหาเรื่อง callback hell ทำให้ง่ายต่อการอ่านโค้ดและง่ายต่อการจัดการกับโค้ดอีกด้วย
+<br/>
 ![Observable image](https://cdn-images-1.medium.com/max/800/1*xen7ToAKzdoDwiqK1BxXMg.png)
+<br/>
 ## Observer
 เรารู้จักฝั่งส่งกันไปแล้ว ที่นี้เรามารู้จักกับฝั่งรับกันบ้าง อยากที่ได้เกริ่นไปแล้วว่า Observer ทำหน้าที่รับข้อมูลและตอบสนองต่อข้อมูลที่ได้รับมาจาก observable โดยขั้นตอนการเชื่อมต่อระหว่าง Observer และ Observable เรียกว่าการ subcribe ซึ่งเป็นขั้นตอนที่บอกว่า Observer กำลังรอฟังเหตุการณ์ต่างๆจาก Observable อยู่ ถ้าหากเปรียบเป็นเหตุการณ์ก็จะคล้ายๆกับตอนที่เรา subscribe channel ใน Youtube เพื่อรอรับการแจ้งเตือนเมื่อมีการอัพโหลดวิดีโอใหม่ๆนั้นเอง เมื่อเราเข้าไปดูโค้ดการทำงานของ Observer เราจะเห็นว่าจริงๆแล้ว Observer เป็นแค่ interface ที่ประกอบไปด้วย 4 functions หลักที่สำคัญคือ
 ```java
@@ -16,7 +18,9 @@ public interface Observer<T> {
 * **`onError(Throwable e)`**: จะถูกเรียกโดย Observable เมื่อมีข้อผิดพลาดใดๆเกิดขึ้นระหว่างการทำงาน โดยจะส่ง Throwable เข้ามาผ่านทาง Parameter ของ onError() ซึ่งเมื่อเรียก onError() แล้ว Observable จะหยุดการทำงานทันที โดยจะไม่มีการเรียก onNext() หรือ onComplete() ต่ออีก
 * **`onComplete()`**: จะถูกเรียกโดย Observable เป็นลำดับสุดท้ายหลังจากที่ไม่มี item ใดๆที่ต้องการปล่อยออกมาผ่านทาง onNext() อีกแล้ว โดยที่ Observable จะหยุดการทำงานทันทีเมื่อ onComplete() ถูกเรียก
 และเพื่อให้เข้าใจและเห็นภาพได้ชัดเจนมากยิ่งขึ้นเราลองมาดูภาพอธิบายการทำงานของ Observable จากเว็บ ReactiveX ประกอบครับ
+<br/>
 ![ReactiveX image](https://cdn-images-1.medium.com/max/800/0*EVHjFNGDhPjT6TbU.)
+<br/>
 จากภาพคือแผนภาพ Mable (marble diagram) ที่อธิบายการทำงานของ Observable ที่มี Operator ขั้นตรงกลาง โดย Operator ทำหน้าที่ปรับเสริมเติมแต่งข้อมูลก่อนที่ข้อมูลนั้นจะถูกส่งต่อไปยัง Observer ซึ่งเราจะพูดถึง Operator ในบทความต่อไป ทั้งนี้แผนภาพ Marble นี้จะถูกใช้ในการอธิบายการทำงานของ Observable และ function ต่างๆที่มีให้ใช้ใน ReactiveX เยอะมาก ดังนั้นจึงอยากให้ทำความคุ้นเคยกับมันไว้ครับ
 ## Observable พื้นฐานที่ควรรู้จัก
 เราพอจะรู้จักการทำงานของ Observable กันไปบ้างแล้ว ทีนี้เรามาลองรู้จักประเภทของ Observable ใน RxJava 2 กันบ้างว่ามี Observable ประเภทไหนบ้างที่เราควรรู้ และแต่ละประเภทมีความแตกต่างกันอย่างไร
@@ -187,8 +191,11 @@ flowable.subscribe({ event: MotionEvent ->
 ```
 ### Update
 ใน RxJava 2.x ได้มีการเพิ่มความสามารถให้กับ Operator Observable.observeOn() ทำให้ไม่มีปัญหาเรื่อง MissingBackpressureException เกิดขึ้นเมื่อใช้ Observable ลองดู link ด้านล่างประกอบครับ
+<br/>
 [Observable.observeOn](https://github.com/ReactiveX/RxJava/issues/4726)
+<br/>
 [Observable backpressure](https://stackoverflow.com/questions/44674174/rxjava2-observable-backpressure)
+<br/>
 [Observable backpressure](https://github.com/ReactiveX/RxJava/wiki/Backpressure-%282.0%29)
 ## Conclusion
 จากบนความข้างต้น เราได้เรียนรู้ว่า Observable และ Observer คืออะไร และมี Obsevable ประเภทไหนบางให้เราเรียกใช้งานและแต่ละประเภทแตกต่างกันอย่างไร โดยจะขอสรุปเป็นข้อๆ ได้ดังนี้
