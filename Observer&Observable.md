@@ -1,3 +1,11 @@
+- [ReactiveX คือ](https://github.com/kingland/RxJavaThai/blob/master/README.md)
+- [Observer & Observable](https://github.com/kingland/RxJavaThai/blob/master/Observer%26Observable.md)
+- [สร้าง Observable](https://github.com/kingland/RxJavaThai/blob/master/Observable.md)
+- [Hot Observable Vs Cold Observable](https://github.com/kingland/RxJavaThai/blob/master/Hot%26ColdObservable.md)
+- [Observer Vs Subscriber Vs Consumer](https://github.com/kingland/RxJavaThai/blob/master/ObserverSubscriberConsumer.md)
+- [observeOn Vs subscribeOn](https://github.com/kingland/RxJavaThai/blob/master/SubscribeOn%26ObserveOn.md)
+- [Operator ใน ReactiveX](https://github.com/kingland/RxJavaThai/blob/master/Operators.md)
+- [Subject คือ](https://github.com/kingland/RxJavaThai/blob/master/Subject.md)
 ## Observable
 Observable คือ ตัวที่เชื่อมระหว่างผู้ผลิตข้อมูล (Producer) และผู้รับข้อมูล (Consumer) เพื่อทำหน้าที่จัดการกระบวนการปล่อยข้อมูลหรือชุดของข้อมูลออกมา (emit item or sequence of items) โดยมี Observer ที่เป็นเหมือน Consumer ทำหน้าที่รับข้อมูลและตอบสนองต่อข้อมูลที่ถูกส่งออกมาเหล่านั้น Observable ยังอนุญาตให้เราสามารถที่จะทำการเสริมเติมแต่งในสายข้อมูล (allow to compose stream) ก่อนที่ข้อมูลเหล่านั้นจะถูกปล่อยออกมาให้กับ Observer เพื่อที่จะให้ Observer สามารถนำไปข้อมูลที่ได้นั้นไปใช้งานได้ทันที นอกจากนี้ Observable ยังช่วยให้การทำงานแบบ asynchronous เป็นเรื่องที่ง่ายขึ้น โดยเราสามารถสลับ thread การทำงานไปมาได้อย่างง่ายดาย และยังช่วยลดปัญหาเรื่อง callback hell ทำให้ง่ายต่อการอ่านโค้ดและง่ายต่อการจัดการกับโค้ดอีกด้วย
 
