@@ -29,7 +29,7 @@ Single.just("Hello"); // can be only one data
 ```kotlin
 val observable = Observable.just(getDataFromApi()).subscribeOn(Schedulers.io())
 ```
-จากโค้ดด้านบน `equal`getDataFromApi() ถูกสั่งให้ทำงานทันทีตอนที่เรากำลังสร้าง observable ขึ้นมาด้วย คำสั่ง `just()` โดย `getDataFromApi()` จะทำงานที่ thread เดียวกับ caller ถึงแม้ว่าเราจะสั่งให้ observerble นั้นทำงานที่ IO thread ด้วยคำสั่ง `subscribeOn()` แล้วก็ตาม (คำสั่ง `subscribeOn()` จะกล่าวถึงในบทความถัดไป) ซึ่งหากเราลองเอาโค้ดด้านบนมาเขียนใหม่ เราสามารถเขียนได้ดังนี้
+จากโค้ดด้านบน `getDataFromApi()` ถูกสั่งให้ทำงานทันทีตอนที่เรากำลังสร้าง observable ขึ้นมาด้วย คำสั่ง `just()` โดย `getDataFromApi()` จะทำงานที่ thread เดียวกับ caller ถึงแม้ว่าเราจะสั่งให้ observerble นั้นทำงานที่ IO thread ด้วยคำสั่ง `subscribeOn()` แล้วก็ตาม (คำสั่ง `subscribeOn()` จะกล่าวถึงในบทความถัดไป) ซึ่งหากเราลองเอาโค้ดด้านบนมาเขียนใหม่ เราสามารถเขียนได้ดังนี้
 ```kotlin
 val data = getDataFromApi()
 val observable = Observable.just(data).subscribeOn(Schedulers.io())
@@ -75,7 +75,7 @@ Completable.fromAction(() -> {...});
 
 Completable.fromRunnable(() -> {...});
 ```
-เมื่อพูดถึง `fromCallable()` ไปแล้วถ้าจะไม่พูดถึง `fromAction()` และ `fromRunnable()` ก็คงจะไม่ได้ สองอย่างนี้ทำหน้าที่คล้ายกับ `fromCallable()` แต่จะแตกต่างจาก `equal`fromCallable() ตรงที่ `fromAction()` และ `fromRunnable()` จะไม่คืนค่าใดๆ หรือปล่อยค่าใดๆออกมาให้กับ Observer และมีให้ใช้เฉพาะใน Maybe และ Completable เท่านั้น ซึ่งเราจะมักจะใช้ในกรณีที่ต้องการทำงานอะไรสักอย่างก่อนที่ onComplete จะถูกเรียก หรือใช้ในงานที่ต้องการทราบแค่เพียงว่า Success (`onComplete()`) หรือ Fail (`onError()`) เช่น การบันทึกข้อมูลลง Database เป็นต้น ลองดูตัวอย่างการใช้งานของ `Completable.fromAction()` ครับ
+เมื่อพูดถึง `fromCallable()` ไปแล้วถ้าจะไม่พูดถึง `fromAction()` และ `fromRunnable()` ก็คงจะไม่ได้ สองอย่างนี้ทำหน้าที่คล้ายกับ `fromCallable()` แต่จะแตกต่างจาก `fromCallable()` ตรงที่ `fromAction()` และ `fromRunnable()` จะไม่คืนค่าใดๆ หรือปล่อยค่าใดๆออกมาให้กับ Observer และมีให้ใช้เฉพาะใน Maybe และ Completable เท่านั้น ซึ่งเราจะมักจะใช้ในกรณีที่ต้องการทำงานอะไรสักอย่างก่อนที่ onComplete จะถูกเรียก หรือใช้ในงานที่ต้องการทราบแค่เพียงว่า Success (`onComplete()`) หรือ Fail (`onError()`) เช่น การบันทึกข้อมูลลง Database เป็นต้น ลองดูตัวอย่างการใช้งานของ `Completable.fromAction()` ครับ
 ```kotlin
 // create observable
 val addressList = //...
