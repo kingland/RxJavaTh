@@ -1,3 +1,11 @@
+- [ReactiveX คือ](https://github.com/kingland/RxJavaThai/blob/master/README.md)
+- [Observer & Observable](https://github.com/kingland/RxJavaThai/blob/master/Observer%26Observable.md)
+- [สร้าง Observable](https://github.com/kingland/RxJavaThai/blob/master/Observable.md)
+- [Hot Observable Vs Cold Observable](https://github.com/kingland/RxJavaThai/blob/master/Hot%26ColdObservable.md)
+- [Observer Vs Subscriber Vs Consumer](https://github.com/kingland/RxJavaThai/blob/master/ObserverSubscriberConsumer.md)
+- [observeOn Vs subscribeOn](https://github.com/kingland/RxJavaThai/blob/master/SubscribeOn%26ObserveOn.md)
+- [Operator ใน ReactiveX](https://github.com/kingland/RxJavaThai/blob/master/Operators.md)
+- [Subject คือ](https://github.com/kingland/RxJavaThai/blob/master/Subject.md)
 ## Subject
 Subject เป็นเหมือนสะพานที่เชื่อมระหว่าง Observable แล้ว Observer (ต่อไปจะขอเรียกว่า subscriber) คือ Subject จะทำหน้าที่เป็นทั้ง Observable และ Subscriber ในตัวเดียวกัน นั้นหมายความว่าเราสามารถใช้ Subject แทน Subscriber ในการ subscribe Observable ได้ และยังสามารถใช้มันในการส่งต่อ Item ที่ได้รับมาไปยัง Subscriber ตัวอื่นที่ subscribe มันอยู่ หรือแม้กระทั้งสร้าง Item ใหม่ขึ้นมาได้ เพราะเนื่องจากมันเป็น Observable ในตัวมันเองอยู่แล้ว
 
